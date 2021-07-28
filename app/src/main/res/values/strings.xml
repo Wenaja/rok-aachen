@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+    <string name="app_name">Церковь святой благоверной Тамары, царицы Грузинской</string>
+    <string name="str_text1_chip_buttons">Chip</string>
+    <string name="str_text2_chip_buttons">Coke</string>
+    <string name="str_day_eighteenth">18</string>
+    <string name="str_weekday_mon">Понедельник</string>
+    <string name="title_activity_worship_timetable">WorshipTimetableActivity</string>
+</resources>
