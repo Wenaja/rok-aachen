@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linLay_fragment_item"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:context=".SecondMonthFragment">
+    tools:context=".FirstMonthFragment">
 
     <ListView
-        android:id="@+id/lstView_timetable_second_month"
+        android:id="@+id/lstView_timetable_entry"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
 </LinearLayout>

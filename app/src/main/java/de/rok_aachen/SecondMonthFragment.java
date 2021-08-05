@@ -7,58 +7,25 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link SecondMonthFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class SecondMonthFragment extends Fragment {
+    private String[] titles = {"Святых Отцев 6-ти первых Вселенских Соборов", "Священномученика Ермолая", "Великомученика и целителя Пантелеимона", "Происхождение Честных Древ Животворящего Креста Господня (Первый Спас)", "Архидиакона Стефана", "Преображения Господня", "ПРЕОБРАЖЕНИЕ ГОСПОДНЕ (Второй Спас)", "Святого апостола Матфия", "УСПЕНИЕ ПРЕСВЯТОЙ БОГОРОДИЦЫ", "Перенесение Нерукотворного Образа Господа (Убруса) из Эдессы в Константинополь (3-й Спас)"};
+    private String[] days = {"1", "8", "9", "14", "15", "18", "19", "22", "28", "29"};
+    private String[] weekdays = {"воскресенье", "воскресенье", "понедельник", "суббота", "воскресенье", "среда", "четверг", "воскресенье", "суббота", "воскресенье"};
+    private String[] overheads = {"Неделя 6-я по Пятидесятнице", "Неделя 7-я по Пятидесятнице", "Седмица", "Седмица", "Неделя 8-я по Пятидесятнице", "Седмица", "Седмица", "Неделя 9-я по Пятидесятнице", "Седмица", "Неделя 10-я по Пятидесятнице"};
+    private String[] subtitles = {"", "", "", "", "", "", "", "", "", ""};
+    private String[] start_times = {"9:30", "9:30", "9:30", "9:30", "9:30", "9:30", "18:00", "9:30", "9:30", "9:30"};
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public SecondMonthFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment SecondMonthFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static SecondMonthFragment newInstance(String param1, String param2) {
-        SecondMonthFragment fragment = new SecondMonthFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_second_month, container, false);
+        View view = inflater.inflate(R.layout.fragment_second_month, container, false);
+        ListView listView = (ListView) view.findViewById(R.id.lstView_timetable_second_month);
+        ListViewAdapter listViewAdapter = new ListViewAdapter(getContext(), titles, days, weekdays, overheads, subtitles, start_times);
+        listView.setAdapter(listViewAdapter);
+
+        return view;
     }
 }

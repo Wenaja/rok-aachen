@@ -2,18 +2,22 @@ package de.rok_aachen;
 
 import android.os.Bundle;
 
-import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import androidx.viewpager.widget.ViewPager;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Set;
+
 public class WorshipTimetableActivity extends AppCompatActivity {
 
     private TabLayout worshipTabLayout;
-    private TabItem firstMonth, secondMonth, thirdMonth;
-    private TimetablePageAdapter timetablePageAdapter;
+    //private TabItem firstMonth, secondMonth, thirdMonth;
+    private MonthFragmentsAdapter monthFragmentsAdapter;
     private ViewPager viewPager;
 
     @Override
@@ -32,14 +36,16 @@ public class WorshipTimetableActivity extends AppCompatActivity {
         worshipTabLayout.addTab(secondMonth, 1, false);
         worshipTabLayout.addTab(thirdMonth, 2, false);
 
-        this.timetablePageAdapter = new TimetablePageAdapter(getSupportFragmentManager(), worshipTabLayout.getTabCount());
-        viewPager.setAdapter(timetablePageAdapter);
+        this.monthFragmentsAdapter = new MonthFragmentsAdapter(getSupportFragmentManager(), worshipTabLayout.getTabCount());
+        viewPager.setAdapter(monthFragmentsAdapter);
 
         worshipTabLayout.setupWithViewPager(viewPager);
 
         firstMonth.setText("Август");
         secondMonth.setText("Сентябрь");
         thirdMonth.setText("Октябрь");
+
+        HashMap<String, TimePlanEntriesHolder> test = new HashMap<String, TimePlanEntriesHolder>();
 
     }
 

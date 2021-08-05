@@ -1,127 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root_linLay_include_calendar_entry"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingStart="8dp"
+    android:paddingTop="8dp"
+    android:paddingEnd="0dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingStart="8dp"
-        android:paddingTop="8dp"
-        android:paddingEnd="0dp">
+    <RelativeLayout
+        android:id="@+id/relLay_date_of_month"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:background="@drawable/bg_shimmer"
+        android:gravity="center">
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:background="@drawable/bg_shimmer"
-            android:gravity="center">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:orientation="vertical"
-                android:padding="6dp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center_horizontal"
-                    android:paddingTop="4sp"
-                    android:text="@string/str_day_eighteenth"
-                    android:textColor="@color/white"
-                    android:textSize="44sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:fontFamily="sans-serif"
-                    android:gravity="center_horizontal"
-                    android:letterSpacing="0.025"
-                    android:paddingTop="4sp"
-                    android:paddingBottom="4sp"
-                    android:text="@string/str_weekday_mon"
-                    android:textColor="@color/white"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-        </RelativeLayout>
-
-        <RelativeLayout
+        <LinearLayout
+            android:id="@+id/linLay_date_of_month"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="0dp"
-            android:background="@color/bg_brown_50"
-            android:gravity="center">
+            android:layout_marginTop="3dp"
+            android:orientation="vertical"
+            android:padding="6dp">
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/txtView_day_of_month"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center_horizontal"
+                android:paddingTop="4sp"
+                android:text="@string/str_day_eighteenth"
+                android:textColor="@color/white"
+                android:textSize="44sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtView_weekday"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="sans-serif"
+                android:gravity="center_horizontal"
+                android:letterSpacing="0.025"
+                android:paddingTop="4sp"
+                android:paddingBottom="4sp"
+                android:text="@string/str_weekday_mon"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relLay_content_of_cal_entry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="0dp"
+        android:background="@color/bg_brown_50"
+        android:gravity="center">
+
+        <LinearLayout
+            android:id="@+id/linLay_content_inner_of_cal_entry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:orientation="vertical"
+            android:padding="6dp">
+
+            <TextView
+                android:id="@+id/txtView_overhead"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="Неделя 3-я по Пятидесятнице"
+                android:textColor="@color/sandal"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/txtView_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
-                android:orientation="vertical"
-                android:padding="6dp">
+                android:gravity="center_vertical"
+                android:text="Иконы Божей Матери 'Троеручица'"
+                android:textColor="@color/brown_400_dark"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtView_subtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:gravity="center_vertical"
+                android:text="Утреня, Часы и Божественная Литургия"
+                android:textColor="@color/sandal"
+                android:textSize="14sp" />
+
+            <LinearLayout
+                android:id="@+id/linLay_beginning"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/txtView_beginning"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_weight="2"
                     android:gravity="center_vertical"
-                    android:text="Неделя 3-я по Пятидесятнице"
-                    android:textSize="14sp"
-                    android:textColor="@color/sandal"/>
+                    android:text="Начало"
+                    android:textColor="@color/sandal"
+                    android:textSize="14sp" />
 
                 <TextView
+                    android:id="@+id/txtView_start_time"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_weight="1"
                     android:gravity="center_vertical"
-                    android:text="Иконы Божей Матери 'Троеручица'"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/brown_400_dark"/>
+                    android:text="9:30"
+                    android:textColor="@color/sandal"
+                    android:textSize="14sp" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:gravity="center_vertical"
-                    android:text="Утреня, Часы и Божественная Литургия"
-                    android:textSize="14sp"
-                    android:textColor="@color/sandal"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:gravity="center_vertical"
-                        android:text="Начало"
-                        android:textSize="14sp"
-                        android:textColor="@color/sandal"/>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="6dp"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical"
-                        android:text="9:30"
-                        android:textSize="14sp"
-                        android:textColor="@color/sandal"/>
-
-                </LinearLayout>
             </LinearLayout>
-        </RelativeLayout>
-    </LinearLayout>
-</RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>
