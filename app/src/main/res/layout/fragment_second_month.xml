@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".SecondMonthFragment">
+    tools:context=".fragment.SecondMonthFragment">
 
     <ListView
         android:id="@+id/lstView_timetable_second_month"

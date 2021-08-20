@@ -1,4 +1,4 @@
-package de.rok_aachen;
+package de.rok_aachen.capsule;
 
 import java.util.Objects;
 
@@ -10,6 +10,10 @@ public class TimePlanEntriesHolder {
     private String weekday;
     private String start_time;
     private String month;
+
+    public TimePlanEntriesHolder(){
+
+    }
 
     public TimePlanEntriesHolder(String induction, String title, String subtitle, String day, String weekday, String start_time, String month){
         this.induction = induction;

@@ -1,5 +1,6 @@
-package de.rok_aachen;
+package de.rok_aachen.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,7 +8,12 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
+
+import de.rok_aachen.DayDetailActivity;
+import de.rok_aachen.adapter.ListViewAdapter;
+import de.rok_aachen.R;
 
 public class ThirdMonthFragment extends Fragment {
     private String[] titles = {"Священномученика Иринея, епископа Лионского.", "Усекновение главы Пророка, Предтечи и Крестителя Господня Иоанна", "Перенесение мощей святого благоверного Великого князя Александра Невского", "Церковное Новолетие (начало индикта)", "Воспоминание чуда архистратига Михаила в Хонех", "РОЖДЕСТВО ПРЕСВЯТОЙ БОГОРОДИЦЫ", "Мучеников Илии, Зотика, Лукиана и Валериана", "ВОЗДВИЖЕНИЕ КРЕСТА ГОСПОДНЯ", "Святых мучениц Веры, Надежды, Любови и матери их Софии"};
@@ -25,6 +31,14 @@ public class ThirdMonthFragment extends Fragment {
         ListViewAdapter listViewAdapter = new ListViewAdapter(getContext(), titles, days, weekdays, overheads, subtitles, start_times);
 
         listView.setAdapter(listViewAdapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getContext(), DayDetailActivity.class);
+                startActivity(intent);
+            }
+        });
 
         return view;
     }
