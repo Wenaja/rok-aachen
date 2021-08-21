@@ -5,5 +5,10 @@
     <string name="str_text2_chip_buttons">Coke</string>
     <string name="str_day_eighteenth">18</string>
     <string name="str_weekday_mon">Понедельник</string>
+    <string name="str_month_august">Август</string>
+    <string name="str_month_september">Сентябрь</string>
+    <string name="str_month_october">Октябрь</string>
     <string name="title_activity_worship_timetable">WorshipTimetableActivity</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -2,6 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fillViewport="true">
 
     <LinearLayout
@@ -11,7 +12,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
             android:background="@color/bg_orange_50_dark">
@@ -28,28 +29,20 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <include
-                layout="@layout/include_calendar_entry"
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLay_worshipTimetable"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/red_a700_light"
+                app:tabGravity="fill"
+                app:tabIndicatorColor="@color/white"
+                app:tabSelectedTextColor="@color/white"
+                app:tabTextColor="@color/bg_orange_50_dark">
+            </com.google.android.material.tabs.TabLayout>
 
-            <include
-                layout="@layout/include_calendar_entry"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <include
-                layout="@layout/include_calendar_entry"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <include
-                layout="@layout/include_calendar_entry"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <include
-                layout="@layout/include_calendar_entry"
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/vPager_TimetableContent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>
