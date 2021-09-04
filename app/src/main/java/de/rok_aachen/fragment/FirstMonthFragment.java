@@ -12,12 +12,15 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import de.rok_aachen.DayDetailActivity;
+import java.util.List;
+
+import de.rok_aachen.activities.DayDetailActivity;
 import de.rok_aachen.adapter.ListViewAdapter;
 import de.rok_aachen.R;
 
 public class FirstMonthFragment extends Fragment {
 
+    private List<String> timePlanList = null;
     /*
     *  TODO: Diese alle Arrays dienen jetzt als Platzhalter und müssen später mit echten Daten gefüllt werden
      */
@@ -28,13 +31,17 @@ public class FirstMonthFragment extends Fragment {
     private String[] subtitles = {"Утреня, Часы и Божественная Литургия", "Утреня, Часы и Литургия", "Утреня, Часы и Божественная Литургия", "Утреня, Часы и Божественная Литургия", "Утреня, Часы и Божественная Литургия","Молебен и акафист великому князю"};
     private String[] start_times = {"9:30", "9:30", "9:30", "9:30", "9:30", "15:00"};
 
+    public FirstMonthFragment(List<String> timePlanList){
+        this.timePlanList = timePlanList;
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_first_month, container, false);
 
         ListView listView = (ListView) view.findViewById(R.id.lstView_timetable_entry);
-        ListViewAdapter listViewAdapter = new ListViewAdapter(getContext(), titles, days, weekdays, overheads, subtitles, start_times);
+        ListViewAdapter listViewAdapter = new ListViewAdapter(getContext(), timePlanList);
         listView.setAdapter(listViewAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

@@ -1,8 +1,10 @@
-package de.rok_aachen;
+package de.rok_aachen.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import de.rok_aachen.R;
 
 public class DayDetailActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package de.rok_aachen;
+package de.rok_aachen.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,7 +12,9 @@ import android.widget.Toast;
 
 import java.util.List;
 
-import de.rok_aachen.rest.JsonPlaceHolderApi;
+import de.rok_aachen.R;
+import de.rok_aachen.RokAachenApp;
+import de.rok_aachen.rest.JsonTimePlanRESTApi;
 import de.rok_aachen.rest.json.Root;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -21,8 +23,9 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
-    private Button btn_checkIt;
-    private TextView textView;
+    private final String TAG = "LOG";
+    private Button btn_checkIt = null;
+    private TextView textView = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,20 +35,17 @@ public class MainActivity extends AppCompatActivity {
         btn_checkIt = findViewById(R.id.btn_check_activity);
         textView = findViewById(R.id.txtView_Content);
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://rok-aachen.de/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-
-        Call<List<Root>> calls = jsonPlaceHolderApi.getPosts();
+        RokAachenApp rokAachenApp = (RokAachenApp) getApplication();
+        JsonTimePlanRESTApi jsonTimePlanRESTApi = rokAachenApp.getRestApiService();
+        Call<List<Root>> calls = jsonTimePlanRESTApi.getPosts();
 
         calls.enqueue(new Callback<List<Root>>() {
             @Override
             public void onResponse(Call<List<Root>> call, Response<List<Root>> response) {
                 if(!response.isSuccessful()){
-                    textView.setText("Code: " + response.code());
+                    String message = "On Responce error with code " + response.code();
+                    Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
+
                     return;
                 }
 
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<Root>> call, Throwable t) {
-                Log.d("onFail", t.getMessage(), t);
+                Log.d(TAG, t.getMessage());
             }
         });
 
@@ -72,7 +72,6 @@ public class MainActivity extends AppCompatActivity {
     public void onClick(View v){
         Intent intent = new Intent(this, WorshipTimetableActivity.class);
         startActivity(intent);
-        Toast.makeText(this, "Button cklicked", Toast.LENGTH_SHORT).show();
     }
 
     @Override

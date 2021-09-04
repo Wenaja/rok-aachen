@@ -19,11 +19,17 @@ public class MonthFragmentsAdapter extends FragmentPagerAdapter {
     private int countMonths;
     private List<Fragment> fragments;
     // private Map<String, List<TimePlanEntriesHolder>> timePlanEntries;
+    private List<String> timePlanList = new ArrayList<String>();
 
     public MonthFragmentsAdapter(int countMonths, @NonNull FragmentManager fm){
         super(fm);
         //this.timePlanEntries = timePlanEntries;
         this.countMonths = countMonths;
+timePlanList.add("Position 0");
+        timePlanList.add("Position 1");
+        timePlanList.add("Position 2");
+        timePlanList.add("Position 3");
+        timePlanList.add("Position 4");
 
     }
 
@@ -33,9 +39,9 @@ public class MonthFragmentsAdapter extends FragmentPagerAdapter {
         if (fragments == null) {
             this.fragments = new ArrayList<Fragment>();
 
-            fragments.add(new FirstMonthFragment());
-            fragments.add(new SecondMonthFragment());
-            fragments.add(new ThirdMonthFragment());
+            fragments.add(new FirstMonthFragment(timePlanList));
+            fragments.add(new SecondMonthFragment(timePlanList));
+            fragments.add(new ThirdMonthFragment(timePlanList));
         }
 
         return fragments.get(position);

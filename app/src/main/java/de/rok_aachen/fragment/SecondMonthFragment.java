@@ -11,11 +11,14 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import de.rok_aachen.DayDetailActivity;
+import java.util.List;
+
+import de.rok_aachen.activities.DayDetailActivity;
 import de.rok_aachen.adapter.ListViewAdapter;
 import de.rok_aachen.R;
 
 public class SecondMonthFragment extends Fragment {
+    private List<String> timePlanList = null;
     private String[] titles = {"Святых Отцев 6-ти первых Вселенских Соборов", "Священномученика Ермолая", "Великомученика и целителя Пантелеимона", "Происхождение Честных Древ Животворящего Креста Господня (Первый Спас)", "Архидиакона Стефана", "Преображения Господня", "ПРЕОБРАЖЕНИЕ ГОСПОДНЕ (Второй Спас)", "Святого апостола Матфия", "УСПЕНИЕ ПРЕСВЯТОЙ БОГОРОДИЦЫ", "Перенесение Нерукотворного Образа Господа (Убруса) из Эдессы в Константинополь (3-й Спас)"};
     private String[] days = {"1", "8", "9", "14", "15", "18", "19", "22", "28", "29"};
     private String[] weekdays = {"воскресенье", "воскресенье", "понедельник", "суббота", "воскресенье", "среда", "четверг", "воскресенье", "суббота", "воскресенье"};
@@ -23,13 +26,16 @@ public class SecondMonthFragment extends Fragment {
     private String[] subtitles = {"", "", "", "", "", "", "", "", "", ""};
     private String[] start_times = {"9:30", "9:30", "9:30", "9:30", "9:30", "9:30", "18:00", "9:30", "9:30", "9:30"};
 
+    public SecondMonthFragment(List<String> timePlanList){
+        this.timePlanList = timePlanList;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_second_month, container, false);
         ListView listView = (ListView) view.findViewById(R.id.lstView_timetable_second_month);
-        ListViewAdapter listViewAdapter = new ListViewAdapter(getContext(), titles, days, weekdays, overheads, subtitles, start_times);
+        ListViewAdapter listViewAdapter = new ListViewAdapter(getContext(), timePlanList);
         listView.setAdapter(listViewAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

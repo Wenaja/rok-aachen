@@ -1,4 +1,4 @@
-package de.rok_aachen;
+package de.rok_aachen.activities;
 
 import android.os.Bundle;
 
@@ -11,6 +11,7 @@ import androidx.viewpager.widget.ViewPager;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.rok_aachen.R;
 import de.rok_aachen.adapter.MonthFragmentsAdapter;
 import de.rok_aachen.capsule.TimePlanEntriesHolder;
 import de.rok_aachen.capsule.TimePlanHolder;

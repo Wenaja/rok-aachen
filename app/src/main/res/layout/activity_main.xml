@@ -8,7 +8,7 @@
     android:gravity="center_horizontal"
     android:onClick="onClick"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".activities.MainActivity">
 
     <HorizontalScrollView
         android:layout_width="wrap_content"
