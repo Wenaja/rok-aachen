@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:layout_gravity="center"
     android:gravity="center_horizontal"
-    android:onClick="onClick"
     android:orientation="vertical"
     tools:context=".activities.MainActivity">
 
@@ -62,22 +61,16 @@
                 android:text="chip 7" />
         </com.google.android.material.chip.ChipGroup>
     </HorizontalScrollView>
-
-    <Button
-        android:id="@+id/btn_check_activity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onClick"
-        android:paddingLeft="32dp"
-        android:paddingTop="8dp"
-        android:paddingRight="32dp"
-        android:paddingBottom="8dp"
-        android:text="Check it"
-        android:textAllCaps="false" />
-
+    
     <TextView
         android:id="@+id/txtView_Content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="TextView" />
+
+    <Button
+        android:id="@+id/btn_show_worship"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Button" />
 </LinearLayout>

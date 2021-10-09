@@ -13,29 +13,25 @@ import androidx.annotation.Nullable;
 import java.util.List;
 
 import de.rok_aachen.R;
+import de.rok_aachen.capsule.TimePlan;
 
-public class ListViewAdapter extends ArrayAdapter<String> {
-    private Context context;
-    private String[] titles, days, weekdays, overheads, subtitles, start_times;
-    List<String> timePlanList;
+public class ListViewAdapter extends ArrayAdapter<TimePlan> {
+    private int layoutId;
+    private Context context = null;
+    private List<TimePlan> timePlans = null;
 
-    public ListViewAdapter(Context context, List<String> timePlanList){
-        super(context, R.layout.include_calendar_entry, timePlanList);
+    public ListViewAdapter(int layoutId, Context context, List<TimePlan> timePlans){
+        super(context, layoutId, timePlans);
+        this.layoutId = layoutId;
         this.context = context;
-        //this.days = days;
-        //this.weekdays = weekdays;
-        //this.overheads = overheads;
-        //this.subtitles = subtitles;
-        //this.start_times = start_times;
-        //this.titles = titles;
-        this.timePlanList = timePlanList;
+        this.timePlans = timePlans;
     }
 
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = layoutInflater.inflate(R.layout.include_calendar_entry, parent, false);
+        View view = layoutInflater.inflate(layoutId, parent, false);
 
         TextView day = (TextView) view.findViewById(R.id.txtView_day_of_month);
         TextView weekday = (TextView) view.findViewById(R.id.txtView_weekday);
@@ -43,22 +39,25 @@ public class ListViewAdapter extends ArrayAdapter<String> {
         TextView title = (TextView) view.findViewById(R.id.txtView_title);
         TextView subtitle = (TextView) view.findViewById(R.id.txtView_subtitle);
         TextView start_time = (TextView) view.findViewById(R.id.txtView_start_time);
-/*
-        day.setText(days[position]);
-        weekday.setText(weekdays[position]);
-        overhead.setText(overheads[position]);
-        title.setText(titles[position]);
-        subtitle.setText(subtitles[position]);
-        start_time.setText(start_times[position]);
-*/
-        String s = timePlanList.get(position);
-        day.setText(s);
-        weekday.setText(s);
-        overhead.setText(s);
-        title.setText(s);
-        subtitle.setText(s);
-        start_time.setText(s);
+
+        TimePlan timePlan = timePlans.get(position);
+
+        day.setText(timePlan.getDay());
+        weekday.setText(timePlan.getWeekday());
+        overhead.setText(timePlan.getInduction());
+        title.setText(timePlan.getTitle());
+        subtitle.setText(timePlan.getSubtitle());
+        start_time.setText(timePlan.getStart_time());
 
         return view;
+    }
+
+    @Override
+    public String toString() {
+        return "ListViewAdapter{" +
+                "layoutId=" + layoutId +
+                ", context=" + context +
+                ", timePlans=" + ((timePlans == null) ? "null" : timePlans.size()) + " Elemnts" +
+                '}';
     }
 }

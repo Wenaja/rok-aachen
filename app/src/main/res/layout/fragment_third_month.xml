@@ -7,7 +7,7 @@
     tools:context=".fragment.ThirdMonthFragment">
 
     <ListView
-        android:id="@+id/lstView_timetable_third_month"
+        android:id="@+id/lstView_for_third_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </LinearLayout>

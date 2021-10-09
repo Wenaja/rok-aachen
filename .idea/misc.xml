@@ -3,7 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Workspaces/AndroidStudio/rok-aachen/app/src/main/res/layout/activity_main.xml" value="0.19074074074074074" />
+        <entry key="..\:/Users/jurir/WorkSpaces/StudioProjects/rok-aachen/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Users/jurir/WorkSpaces/StudioProjects/rok-aachen/app/src/main/res/layout/activity_worship_timetable.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/jurir/WorkSpaces/StudioProjects/rok-aachen/app/src/main/res/layout/fragment_first_month.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/jurir/WorkSpaces/StudioProjects/rok-aachen/app/src/main/res/layout/fragment_second_month.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/jurir/WorkSpaces/StudioProjects/rok-aachen/app/src/main/res/layout/fragment_third_month.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/jurir/WorkSpaces/StudioProjects/rok-aachen/app/src/main/res/layout/include_calendar_entry.xml" value="0.4" />
         <entry key="..\:/Workspaces/AndroidStudio/rokaachen/app/src/main/res/layout/activity_day_detail.xml" value="0.28565101860053144" />
         <entry key="..\:/Workspaces/AndroidStudio/rokaachen/app/src/main/res/layout/activity_main.xml" value="0.1685185185185185" />
         <entry key="..\:/Workspaces/AndroidStudio/rokaachen/app/src/main/res/layout/activity_worship_timetable.xml" value="0.2905405405405405" />

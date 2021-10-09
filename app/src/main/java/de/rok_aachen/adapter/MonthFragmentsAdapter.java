@@ -1,5 +1,8 @@
 package de.rok_aachen.adapter;
 
+import android.content.Context;
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -7,43 +10,39 @@ import androidx.fragment.app.FragmentPagerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-import de.rok_aachen.capsule.TimePlanEntriesHolder;
+import de.rok_aachen.capsule.TimePlansContainer;
 import de.rok_aachen.fragment.FirstMonthFragment;
-import de.rok_aachen.fragment.SecondMonthFragment;
-import de.rok_aachen.fragment.ThirdMonthFragment;
+import de.rok_aachen.R;
 
 public class MonthFragmentsAdapter extends FragmentPagerAdapter {
 
     private int countMonths;
-    private List<Fragment> fragments;
-    // private Map<String, List<TimePlanEntriesHolder>> timePlanEntries;
-    private List<String> timePlanList = new ArrayList<String>();
+    private Context context = null;
+    private List<Fragment> fragments = null;
+    private TimePlansContainer[] timePlansContainerArray;
 
-    public MonthFragmentsAdapter(int countMonths, @NonNull FragmentManager fm){
-        super(fm);
-        //this.timePlanEntries = timePlanEntries;
-        this.countMonths = countMonths;
-timePlanList.add("Position 0");
-        timePlanList.add("Position 1");
-        timePlanList.add("Position 2");
-        timePlanList.add("Position 3");
-        timePlanList.add("Position 4");
+    public MonthFragmentsAdapter(@NonNull FragmentManager fm, Context context, TimePlansContainer[] timePlansContainerArray){
+        super(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
 
+        this.context = context;
+        this.timePlansContainerArray = timePlansContainerArray;
+        this.countMonths = timePlansContainerArray.length;
     }
 
     @NonNull
     @Override
     public Fragment getItem(int position) {
         if (fragments == null) {
-            this.fragments = new ArrayList<Fragment>();
-
-            fragments.add(new FirstMonthFragment(timePlanList));
-            fragments.add(new SecondMonthFragment(timePlanList));
-            fragments.add(new ThirdMonthFragment(timePlanList));
+            this.fragments = new ArrayList<>();
         }
 
+        if (fragments.isEmpty()) {
+            for (TimePlansContainer tpc : timePlansContainerArray) {
+                fragments.add(new FirstMonthFragment(R.layout.fragment_first_month, context, tpc.getTimePlanList()));
+            }
+        }
+        Log.d("VAR", "MonthFragmentsAdapter : getItem : count of Fragments ==> " + fragments.size());
         return fragments.get(position);
 
     }
@@ -51,5 +50,15 @@ timePlanList.add("Position 0");
     @Override
     public int getCount() {
         return countMonths;
+    }
+
+    @Override
+    public String toString() {
+        return "MonthFragmentsAdapter{" +
+                "countMonths=" + countMonths +
+                ", context=" + context +
+                ", fragments=" + fragments +
+                ", timePlansContainersList=" + timePlansContainerArray.length + " Elements" +
+                '}';
     }
 }

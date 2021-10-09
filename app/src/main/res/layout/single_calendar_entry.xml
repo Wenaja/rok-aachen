@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/root_linLay_include_calendar_entry"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -114,9 +115,10 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:gravity="center_vertical"
-                    android:text="Начало"
+                    android:text="@string/str_beginning"
                     android:textColor="@color/sandal"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    tools:text="@string/str_beginning" />
 
                 <TextView
                     android:id="@+id/txtView_start_time"

@@ -5,9 +5,9 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:allowBackup="true"
+        android:name=".RokAachenApp"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:name=".RokAachenApp"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Rokaachen">
@@ -17,8 +17,8 @@
             android:parentActivityName=".activities.WorshipTimetableActivity"/>
         <activity
             android:name=".activities.WorshipTimetableActivity"
-            android:label="@string/title_activity_worship_timetable"
-            android:theme="@style/Theme.Rokaachen.NoActionBar" />
+            android:exported="true"
+            android:label="@string/title_activity_worship_timetable" />
         <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
