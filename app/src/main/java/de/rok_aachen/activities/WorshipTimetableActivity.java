@@ -8,7 +8,7 @@ import com.google.android.material.tabs.TabLayout;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import androidx.lifecycle.Observer;
+import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager.widget.ViewPager;
 
@@ -27,14 +27,14 @@ public class WorshipTimetableActivity extends AppCompatActivity {
     private final String LOG = "LOG";
     private final String VAR = "VAR";
 
+    private Toolbar toolbar = null;
     private TabLayout.Tab firstMonthTab = null , secondMonthTab = null, thirdMonthTab = null;
-
     private TabLayout worshipTabLayout;
     private ViewPager viewPager;
-    private MonthFragmentsAdapter monthFragmentsAdapter;
 
+    private MonthFragmentsAdapter monthFragmentsAdapter;
     private List<TimePlan> timePlanList = null;
-    private TimePlansContainer[] timePlansContainerArray = null;
+    //private TimePlansContainer[] timePlansContainerArray = null;
 
     private WorshipViewModel worshipVM = null;
 
@@ -43,31 +43,47 @@ public class WorshipTimetableActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_worship_timetable);
 
-        worshipVM = new ViewModelProvider(this).get(WorshipViewModel.class);
-        worshipVM.initialize(getApplicationContext());
-        timePlansContainerArray = worshipVM.getLiveData().getValue();
-
+        toolbar = (Toolbar) findViewById(R.id.worship_toolbar);
         worshipTabLayout = (TabLayout) findViewById(R.id.tabLay_worshipTimetable);
         viewPager = (ViewPager) findViewById(R.id.vPager_TimetableContent);
 
-        monthFragmentsAdapter = new MonthFragmentsAdapter(
-                getSupportFragmentManager(),
-                getApplicationContext(),
-                timePlansContainerArray);
+        setSupportActionBar(toolbar);
+        toolbar.setTitle(getString(R.string.str_title_activity_worship_timetable));
+        toolbar.setTitleTextColor(getColor(R.color.white));
 
-        firstMonthTab = worshipTabLayout.newTab();
-        secondMonthTab = worshipTabLayout.newTab();
-        thirdMonthTab = worshipTabLayout.newTab();
+        worshipVM = new ViewModelProvider(this).get(WorshipViewModel.class);
+        worshipVM.initialize(getApplicationContext());
 
-        worshipTabLayout.addTab(firstMonthTab, 0, true);
-        worshipTabLayout.addTab(secondMonthTab, 1, false);
-        worshipTabLayout.addTab(thirdMonthTab, 2, false);
+        worshipVM.getTimePlansContainerArray().observe(this, timePlansContainers -> {
+            monthFragmentsAdapter = new MonthFragmentsAdapter(
+                    getSupportFragmentManager(),
+                    getApplicationContext(),
+                    timePlansContainers);
 
-        viewPager.setAdapter(monthFragmentsAdapter);
-        worshipTabLayout.setupWithViewPager(viewPager, true);
+            firstMonthTab = worshipTabLayout.newTab();
+            secondMonthTab = worshipTabLayout.newTab();
+            thirdMonthTab = worshipTabLayout.newTab();
+
+            worshipTabLayout.addTab(firstMonthTab, 0, true);
+            worshipTabLayout.addTab(secondMonthTab, 1, false);
+            worshipTabLayout.addTab(thirdMonthTab, 2, false);
+
+            viewPager.setAdapter(monthFragmentsAdapter);
+            worshipTabLayout.setupWithViewPager(viewPager, true);
+
+            TimePlansContainer tpc = timePlansContainers[0];
+            firstMonthTab.setText(tpc.getMonth());
+
+            tpc = timePlansContainers[1];
+            secondMonthTab.setText(tpc.getMonth());
+
+            tpc = timePlansContainers[2];
+            thirdMonthTab.setText(tpc.getMonth());
+        });
+        //timePlansContainerArray = worshipVM.getLiveData().getValue();
 
         Log.d(VAR, "onCreate : START =============================");
-        Log.d(VAR, "onCreate : Size of TimePlansContainerArray ==> " + timePlansContainerArray.length);
+        //Log.d(VAR, "onCreate : Size of TimePlansContainerArray ==> " + timePlansContainerArray.length);
         Log.d(VAR, "onCreate : Count of Tabs ==> " + worshipTabLayout.getTabCount());
         Log.d(VAR, "onCreate : Count of Fragments ==> " + FirstMonthFragment.countOfFragments);
         Log.d(VAR, "onCreate : END ===============================");
@@ -76,25 +92,12 @@ public class WorshipTimetableActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
-        worshipVM.getTimePlansContainerArray().observe(this, timePlansContainers -> {
-            int countTabs = worshipTabLayout.getTabCount();
-
-            for (int i = 0; i < countTabs; i++) {
-                String month = timePlansContainers[i].getMonth();
-                worshipTabLayout.getTabAt(i).setText(month);
-            }
-            timePlansContainerArray = timePlansContainers;
-            monthFragmentsAdapter.notifyDataSetChanged();
-            worshipTabLayout.refreshDrawableState();
-            Log.d(VAR, "(observer) countTabs " + countTabs);
-        });
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        worshipVM.closeDatabase();
+        //worshipVM.closeDatabase();
     }
 
     @Override

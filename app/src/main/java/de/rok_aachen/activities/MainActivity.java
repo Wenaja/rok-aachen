@@ -2,6 +2,7 @@ package de.rok_aachen.activities;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.ContentValues;
 import android.content.Intent;
@@ -39,97 +40,22 @@ public class MainActivity extends AppCompatActivity {
     private final String VAR = "VAR";
     private final String ERR = "ERR";
 
-    private Document document = null;
+    private Toolbar toolbar = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Log.d(LOG, "MainActivity::onCreate (before)");
+        Log.v(LOG, "MainActivity::onCreate()");
+
+        toolbar = (Toolbar) findViewById(R.id.main_activity_toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setTitle(getString(R.string.str_title_activity_main));
+        toolbar.setTitleTextColor(getColor(R.color.white));
 
         Button btn = (Button) findViewById(R.id.btn_show_worship);
         btn.setOnClickListener(this::onClick);
-
-        DBHelper helper = new DBHelper(getApplicationContext(), DBContracts.DATABASE_NAME, null, DBContracts.DATABASE_VERSION);
-        SQLiteDatabase database;
-
-        try {
-            database = helper.getWritableDatabase();
-            helper.onUpgrade(database, 1, 1);
-
-            ContentValues values = new ContentValues();
-            values.put(DBContracts.Attributes.MONTH, "Октябрь");
-            database.insert(DBContracts.MONTH_TABLE_NAME, null, values);
-            values.clear();
-
-            values.put(DBContracts.Attributes.MONTH, "Ноябрь");
-            database.insert(DBContracts.MONTH_TABLE_NAME, null, values);
-            values.clear();
-
-            values.put(DBContracts.Attributes.MONTH, "Декабрь");
-            database.insert(DBContracts.MONTH_TABLE_NAME, null, values);
-            values.clear();
-
-            values.put(DBContracts.Attributes.OVERHEAD, "Неделя 5-я");
-            values.put(DBContracts.Attributes.TITLE, "СПАС");
-            values.put(DBContracts.Attributes.SUBTITLE, "Утреня, Часы и Божественная Литургия");
-            values.put(DBContracts.Attributes.BEGINNING_TIME, "9:30");
-            values.put(DBContracts.Attributes.DAY, "02");
-            values.put(DBContracts.Attributes.WEEKDAY, "Воскресенье");
-            values.put(DBContracts.Attributes.MONTH, 1);
-
-            database.insert(DBContracts.TP_TABLE_NAME, null, values);
-            values.clear();
-
-            values.put(DBContracts.Attributes.OVERHEAD, "Неделя 6-я");
-            values.put(DBContracts.Attributes.TITLE, "КРЕЩЕНИЕ");
-            values.put(DBContracts.Attributes.SUBTITLE, "Утреня, Часы и Божественная Литургия");
-            values.put(DBContracts.Attributes.BEGINNING_TIME, "9:30");
-            values.put(DBContracts.Attributes.DAY, "07");
-            values.put(DBContracts.Attributes.WEEKDAY, "Воскресенье");
-            values.put(DBContracts.Attributes.MONTH, 1);
-
-            database.insert(DBContracts.TP_TABLE_NAME, null, values);
-            values.clear();
-
-            values.put(DBContracts.Attributes.OVERHEAD, "Неделя 7-я");
-            values.put(DBContracts.Attributes.TITLE, "РОЖДЕСТВО");
-            values.put(DBContracts.Attributes.SUBTITLE, "Утреня, Часы и Божественная Литургия");
-            values.put(DBContracts.Attributes.BEGINNING_TIME, "9:30");
-            values.put(DBContracts.Attributes.DAY, "11");
-            values.put(DBContracts.Attributes.WEEKDAY, "Воскресенье");
-            values.put(DBContracts.Attributes.MONTH, 1);
-
-            database.insert(DBContracts.TP_TABLE_NAME, null, values);
-            values.clear();
-
-            values.put(DBContracts.Attributes.OVERHEAD, "Неделя 8-я");
-            values.put(DBContracts.Attributes.TITLE, "ЯВЛЕНИЕ");
-            values.put(DBContracts.Attributes.SUBTITLE, "Утреня, Часы и Божественная Литургия");
-            values.put(DBContracts.Attributes.BEGINNING_TIME, "9:30");
-            values.put(DBContracts.Attributes.DAY, "12");
-            values.put(DBContracts.Attributes.WEEKDAY, "Воскресенье");
-            values.put(DBContracts.Attributes.MONTH, 1);
-
-            database.insert(DBContracts.TP_TABLE_NAME, null, values);
-            values.clear();
-
-            values.put(DBContracts.Attributes.OVERHEAD, "Неделя 9-я");
-            values.put(DBContracts.Attributes.TITLE, "ПАСХА");
-            values.put(DBContracts.Attributes.SUBTITLE, "Утреня, Часы и Божественная Литургия");
-            values.put(DBContracts.Attributes.BEGINNING_TIME, "9:30");
-            values.put(DBContracts.Attributes.DAY, "15");
-            values.put(DBContracts.Attributes.WEEKDAY, "Воскресенье");
-            values.put(DBContracts.Attributes.MONTH, 1);
-
-            database.insert(DBContracts.TP_TABLE_NAME, null, values);
-            values.clear();
-            database.close();
-
-        } catch (SQLiteException e) {
-            Log.e("LOG", e.getMessage());
-        }
     }
 
     public void onClick(View v){
@@ -140,44 +66,44 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        Log.d(LOG, "MainActivity::onStart");
+        Log.v(LOG, "MainActivity::onStart");
     }
 
     @Override
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        Log.d(LOG, "MainActivity::onPostCreate");
+        Log.v(LOG, "MainActivity::onPostCreate");
 
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        Log.d(LOG, "MainActivity::onResume");
+        Log.v(LOG, "MainActivity::onResume");
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        Log.d(LOG, "MainActivity::onPause");
+        Log.v(LOG, "MainActivity::onPause");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        Log.d(LOG, "MainActivity::onStop");
+        Log.v(LOG, "MainActivity::onStop");
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        Log.d(LOG, "MainActivity::onRestart");
+        Log.v(LOG, "MainActivity::onRestart");
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Log.d(LOG, "MainActivity::onDestroy");
+        Log.v(LOG, "MainActivity::onDestroy()");
     }
 
 }

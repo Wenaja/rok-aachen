@@ -39,10 +39,16 @@ public class MonthFragmentsAdapter extends FragmentPagerAdapter {
 
         if (fragments.isEmpty()) {
             for (TimePlansContainer tpc : timePlansContainerArray) {
-                fragments.add(new FirstMonthFragment(R.layout.fragment_first_month, context, tpc.getTimePlanList()));
+                fragments.add(new FirstMonthFragment(tpc.getTimePlanList()));
             }
+            Log.v("LOG", "MonthFragmentsAdapter : getItem() : IS EMPTY");
         }
-        Log.d("VAR", "MonthFragmentsAdapter : getItem : count of Fragments ==> " + fragments.size());
+
+        Log.d("VAR", "MonthFragmentsAdapter : getItem() : ===== START =============");
+        Log.d("VAR", "MonthFragmentsAdapter : getItem() : size of Fragments List ==> " + fragments.size());
+        Log.d("VAR", "MonthFragmentsAdapter : getItem() : position " + position);
+        Log.d("VAR", "MonthFragmentsAdapter : getItem() : ===== END ===============");
+
         return fragments.get(position);
 
     }
